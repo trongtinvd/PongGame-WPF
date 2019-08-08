@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PongGame_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Name="MyWindow">
-    <Grid>
+        Title="Pong Game" Height="450" Width="800" Name="MyWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#e7e7e7">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>            
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="Rectangle">
+                <Setter Property="HorizontalAlignment"  Value="Stretch"/>
+                <Setter Property="Fill"                 Value="Aqua"/>
+                <Setter Property="Height"               Value="120"/>
+                <Setter Property="Stroke"               Value="black"/>
+                <Setter Property="StrokeThickness"      Value="2"/>
+            </Style>            
+        </Grid.Resources>
+
+        <Rectangle Grid.Column="1" Name="BotRectangle"/>
+        <Rectangle Grid.Column="3" Name="PlayerRectangle"/>
+        <Rectangle Grid.Column="2" Name="TheBall" Height="30" Width="30" Fill="BlueViolet"/>
 
     </Grid>
 </Window>
