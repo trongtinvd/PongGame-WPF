@@ -1,0 +1,15 @@
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\bin\Debug\PongGame WPF.exe.config
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\bin\Debug\PongGame WPF.exe
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\bin\Debug\PongGame WPF.pdb
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.csprojAssemblyReference.cache
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\MainWindow.g.cs
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\App.g.cs
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF_MarkupCompile.cache
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF_MarkupCompile.lref
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\MainWindow.baml
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.g.resources
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame_WPF.Properties.Resources.resources
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.csproj.GenerateResource.cache
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.csproj.CoreCompileInputs.cache
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.exe
+G:\Tài liệu\c#\PongGame WPF\PongGame WPF\obj\Debug\PongGame WPF.pdb
