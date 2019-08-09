@@ -6,29 +6,51 @@
         xmlns:local="clr-namespace:PongGame_WPF"
         mc:Ignorable="d"
         Title="Pong Game" Height="450" Width="800" Name="MyWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid Background="#e7e7e7">
-        
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="15*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>            
         </Grid.ColumnDefinitions>
 
-        <Grid.Resources>
-            <Style TargetType="Rectangle">
-                <Setter Property="HorizontalAlignment"  Value="Stretch"/>
-                <Setter Property="Fill"                 Value="Aqua"/>
-                <Setter Property="Height"               Value="120"/>
-                <Setter Property="Stroke"               Value="black"/>
-                <Setter Property="StrokeThickness"      Value="2"/>
-            </Style>            
-        </Grid.Resources>
+        <Grid Background="#e7e7e7" Grid.Column="0">
 
-        <Rectangle Grid.Column="1" Name="BotRectangle"/>
-        <Rectangle Grid.Column="3" Name="PlayerRectangle"/>
-        <Rectangle Grid.Column="2" Name="TheBall" Height="30" Width="30" Fill="BlueViolet"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Canvas Grid.Column="1" Name="BotSlideBar" Background="White"/>
+            <Canvas Grid.Column="2" Name="BallField"/>
+            <Canvas Grid.Column="3" Name="PlayerSlideBar" Background="White"/>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Background="GreenYellow">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Label Grid.Row="0" Name="PlayerScore" Content="Your score: "/>
+            <Label Grid.Row="1" Name="BotScore" Content="Bot score: "/>
+            <Button Grid.Row="2" Margin="3">
+                <TextBlock Text="Click this button or press Enter Key to start!!" TextWrapping="Wrap"/>
+            </Button>
+            <TextBlock Grid.Row="3" Text="Use arrow key to control your slide" TextWrapping="Wrap" Margin="5"/>
+
+        </Grid>
+
+
+
 
     </Grid>
+
+
 </Window>
