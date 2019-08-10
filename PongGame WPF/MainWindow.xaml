@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PongGame_WPF"
         mc:Ignorable="d"
-        Title="Pong Game" Height="450" Width="800" Name="MyWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Pong Game" Height="450" Width="900" Name="MyWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Load">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -23,8 +23,10 @@
             </Grid.ColumnDefinitions>
 
             <Canvas Grid.Column="1" Name="BotSlideBar" Background="White"/>
-            <Canvas Grid.Column="2" Name="BallField"/>
+            <Canvas Grid.Column="2" Name="PlayingField"/>
             <Canvas Grid.Column="3" Name="PlayerSlideBar" Background="White"/>
+
+
 
         </Grid>
 
@@ -37,19 +39,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
             <Label Grid.Row="0" Name="PlayerScore" Content="Your score: "/>
             <Label Grid.Row="1" Name="BotScore" Content="Bot score: "/>
-            <Button Grid.Row="2" Margin="3">
+            <Button Grid.Row="2" Margin="3" Click="StartButton_Click">
                 <TextBlock Text="Click this button or press Enter Key to start!!" TextWrapping="Wrap"/>
             </Button>
             <TextBlock Grid.Row="3" Text="Use arrow key to control your slide" TextWrapping="Wrap" Margin="5"/>
 
         </Grid>
-
-
-
-
     </Grid>
 
 
