@@ -11,7 +11,7 @@ namespace PongGame_WPF
         public GameSlide Player { get; set; }
         public GameSlide Bot { get; set; }
         public GameBall Ball { get; set; }
-        public bool gameStart { get; private set; }
+        private bool gameStart;
 
         public PongGame()
         {
@@ -33,7 +33,7 @@ namespace PongGame_WPF
             return gameStart;
         }
 
-        private void NewGame()
+        public void NewGame()
         {
             Player = new GameSlide();
             Bot = new GameSlide();

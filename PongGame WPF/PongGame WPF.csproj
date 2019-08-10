@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MoveableGameObject.cs" />
     <Compile Include="MovingDirection.cs" />
     <Compile Include="ValueRestricted.cs" />
     <Page Include="MainWindow.xaml">

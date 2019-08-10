@@ -26,12 +26,15 @@ namespace PongGame_WPF
         public MainWindow()
         {
             InitializeComponent();
-            this.KeyDown += new KeyEventHandler(UpdatePlayerSlide);
+            this.KeyDown += new KeyEventHandler(ResponseToUserInput);
+
+
 
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(40);
-            timer.Tick += UpdateGame;
+            timer.Tick += BallMove;
+            timer.Tick += BotTakeAnAction;
             timer.Tick += DisplayGame;
             timer.Start();
 
@@ -40,14 +43,22 @@ namespace PongGame_WPF
         private void Window_Load(object sender, RoutedEventArgs e)
         {
             pongGame.Player.AddYRange(0, PlayerSlideBar.ActualHeight);
+            pongGame.Player.RectangleRepresentation.Width = PlayerSlideBar.ActualWidth;
+            pongGame.Player.ToMiddle();
+
             pongGame.Ball.AddXRange(0, PlayingField.ActualWidth);
             pongGame.Ball.AddYRange(0, PlayingField.ActualHeight);
             pongGame.Ball.ToMiddle();
             pongGame.Ball.SetRandomDirection();
 
+            pongGame.Bot.AddYRange(0, PlayerSlideBar.ActualHeight);
+            pongGame.Bot.RectangleRepresentation.Width = BotSlideBar.ActualWidth;
+            pongGame.Bot.ToMiddle();
 
-            PlayerSlideBar.Children.Add(pongGame.Player.Slide);
-            PlayingField.Children.Add(pongGame.Ball.PlayingBall);
+
+            PlayerSlideBar.Children.Add(pongGame.Player.RectangleRepresentation);
+            PlayingField.Children.Add(pongGame.Ball.RectangleRepresentation);
+            BotSlideBar.Children.Add(pongGame.Bot.RectangleRepresentation);
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +69,7 @@ namespace PongGame_WPF
                 pongGame.Start();
         }
 
-        private void UpdateGame(object sender, EventArgs e)
+        private void BallMove(object sender, EventArgs e)
         {
             if (pongGame.IsStart())
             {
@@ -67,9 +78,7 @@ namespace PongGame_WPF
                 if (pongGame.Ball.IsStuck())
                 {
                     pongGame.Ball.ChangDirection();
-                    
                 }
-
             }
             else
             {
@@ -77,35 +86,41 @@ namespace PongGame_WPF
             }
         }
 
+        private void BotTakeAnAction(object sender, EventArgs e)
+        {
+            if (pongGame.IsStart())
+            {
+                if (pongGame.Ball.YCenter() < pongGame.Bot.YCenter())
+                    pongGame.Bot.MoveUp();
+                else if (pongGame.Ball.YCenter() > pongGame.Bot.YCenter())
+                    pongGame.Bot.MoveDown();
+            }
+        }
+
         private void DisplayGame(object sender, EventArgs e)
         {
-            UpdateGameSlide(PlayerSlideBar, pongGame.Player);
-            UpdateGameBall(PlayingField, pongGame.Ball);
+            UpdateGameObjectPosition(pongGame.Player);
+            UpdateGameObjectPosition(pongGame.Ball);
+            UpdateGameObjectPosition(pongGame.Bot);
         }
 
-        private void UpdateGameBall(Canvas playingField, GameBall ball)
+        private void UpdateGameObjectPosition(MoveableGameObject anObject)
         {
-            Canvas.SetTop(ball.PlayingBall, ball.BallPosition.Y);
-            Canvas.SetLeft(ball.PlayingBall, ball.BallPosition.X);
+            Canvas.SetTop(anObject.RectangleRepresentation, anObject.position.Y);
+            Canvas.SetLeft(anObject.RectangleRepresentation, anObject.position.X);
         }
 
-        private void UpdateGameSlide(Canvas container, GameSlide slide)
+        private void ResponseToUserInput(object sender, KeyEventArgs e)
         {
-            Canvas.SetTop(slide.Slide, slide.position.Y);
-            Canvas.SetLeft(slide.Slide, slide.position.X);
-        }
-
-        private void UpdatePlayerSlide(object sender, KeyEventArgs e)
-        {
-            if (e.Key==Key.Up)
+            if (e.Key == Key.Up)
             {
-                pongGame.Player.position.Y -= 10;
+                pongGame.Player.MoveUp();
             }
-            if(e.Key==Key.Down)
+            if (e.Key == Key.Down)
             {
-                pongGame.Player.position.Y += 10;
+                pongGame.Player.MoveDown();
             }
         }
-        
+
     }
 }

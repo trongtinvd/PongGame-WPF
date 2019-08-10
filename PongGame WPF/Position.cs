@@ -85,7 +85,7 @@ namespace PongGame_WPF
 
         internal bool AtXMin()
         {
-            return (X==RestrictX.Min);
+            return (X == RestrictX.Min);
         }
 
         internal bool AtXMax()

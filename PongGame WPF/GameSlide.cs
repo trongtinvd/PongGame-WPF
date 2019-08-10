@@ -8,41 +8,15 @@ using System.Windows.Shapes;
 
 namespace PongGame_WPF
 {
-    class GameSlide
+    class GameSlide : MoveableGameObject
     {
-        //public double Height { get; set; }
-        public double Speed { get; set; }
-        public Position position { get; set; }
-        public Rectangle Slide { get; set; }
-
-        public GameSlide()
+        public GameSlide() : base()
         {
             Speed = 5;
-            Slide = new Rectangle();
-            Slide.Height = 150;
-            Slide.Width = 30;
-            Slide.Fill=new SolidColorBrush(System.Windows.Media.Colors.Aqua);
-            position = new Position();
+            RectangleRepresentation.Height = 150;
+            RectangleRepresentation.Width = 30;
+            RectangleRepresentation.Fill = new SolidColorBrush(System.Windows.Media.Colors.Aqua);
         }
 
-        public GameSlide(double barLength) : this()
-        {
-            position = new Position(new ValueRestricted(), new ValueRestricted(0, barLength-Slide.Height));
-        }
-
-        public void GoUp()
-        {
-            position.Y += Speed;
-        }
-
-        public void GoDown()
-        {
-            position.Y -= Speed;
-        }
-
-        internal void AddYRange(int min, double max)
-        {
-            position.AddYRestrict(min, max - Slide.Height);
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace PongGame_WPF
         public double Min { set; get; }
         public double Max { get; set; }
 
-        public ValueRestricted() : this(0,0)
+        public ValueRestricted() : this(0, 0)
         {
 
         }
