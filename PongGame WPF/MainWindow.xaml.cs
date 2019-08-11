@@ -28,9 +28,6 @@ namespace PongGame_WPF
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(ResponseToUserInput);
 
-
-
-
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(40);
             timer.Tick += BallMove;
@@ -44,16 +41,14 @@ namespace PongGame_WPF
         {
             pongGame.Player.AddYRange(0, PlayerSlideBar.ActualHeight);
             pongGame.Player.RectangleRepresentation.Width = PlayerSlideBar.ActualWidth;
-            pongGame.Player.ToMiddle();
 
             pongGame.Ball.AddXRange(0, PlayingField.ActualWidth);
             pongGame.Ball.AddYRange(0, PlayingField.ActualHeight);
-            pongGame.Ball.ToMiddle();
-            pongGame.Ball.SetRandomDirection();
 
             pongGame.Bot.AddYRange(0, PlayerSlideBar.ActualHeight);
             pongGame.Bot.RectangleRepresentation.Width = BotSlideBar.ActualWidth;
-            pongGame.Bot.ToMiddle();
+
+            pongGame.ResetGame();
 
 
             PlayerSlideBar.Children.Add(pongGame.Player.RectangleRepresentation);
@@ -64,9 +59,12 @@ namespace PongGame_WPF
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             if (pongGame.IsStart())
-                pongGame.End();
+                pongGame.GameEnd();
             else
-                pongGame.Start();
+            {
+                pongGame.ResetGame();
+                pongGame.GameStart();
+            }
         }
 
         private void BallMove(object sender, EventArgs e)
@@ -75,9 +73,19 @@ namespace PongGame_WPF
             {
                 pongGame.Ball.Move();
 
-                if (pongGame.Ball.IsStuck())
-                {
+                if (pongGame.Ball.position.AtYEdge())
                     pongGame.Ball.ChangDirection();
+                else if (pongGame.Ball.position.AtXMax())
+                {
+                    if (pongGame.BallHitPlayer())
+                        pongGame.PlayerScore++;
+                    pongGame.Ball.Direction.RandomToTheLeft();
+                }
+                else if (pongGame.Ball.position.AtXMin())
+                {
+                    if (pongGame.BallHitBot())
+                        pongGame.BotScore++;
+                    pongGame.Ball.Direction.RandomToTheRight();
                 }
             }
             else
@@ -90,9 +98,9 @@ namespace PongGame_WPF
         {
             if (pongGame.IsStart())
             {
-                if (pongGame.Ball.YCenter() < pongGame.Bot.YCenter())
+                if (pongGame.Ball.YCenter() < pongGame.Bot.YCenter() + 10)
                     pongGame.Bot.MoveUp();
-                else if (pongGame.Ball.YCenter() > pongGame.Bot.YCenter())
+                else if (pongGame.Ball.YCenter() > pongGame.Bot.YCenter() + 10)
                     pongGame.Bot.MoveDown();
             }
         }
@@ -102,6 +110,10 @@ namespace PongGame_WPF
             UpdateGameObjectPosition(pongGame.Player);
             UpdateGameObjectPosition(pongGame.Ball);
             UpdateGameObjectPosition(pongGame.Bot);
+
+            PlayerScore.Content = $"Player Score = {pongGame.PlayerScore}";
+            BotScore.Content = $"Bot Score = {pongGame.BotScore}";
+
         }
 
         private void UpdateGameObjectPosition(MoveableGameObject anObject)

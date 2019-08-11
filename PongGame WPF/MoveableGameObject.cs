@@ -96,5 +96,23 @@ namespace PongGame_WPF
         {
             return position.X + RectangleRepresentation.Width / 2;
         }
+
+        public double Top()
+        {
+            return position.Y;
+        }
+        public double Bottom()
+        {
+            return position.Y + RectangleRepresentation.Height;
+        }
+
+        public double Left()
+        {
+            return position.X;
+        }
+        public double Right()
+        {
+            return position.X + RectangleRepresentation.Width;
+        }
     }
 }

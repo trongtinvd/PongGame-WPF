@@ -55,5 +55,29 @@ namespace PongGame_WPF
         {
             VectorY = -VectorY;
         }
+
+        public void RandomToTheLeft()
+        {
+            Random r = new Random();
+
+            double XDirection = r.NextDouble() * 2 - 1;
+            double YDirection = r.NextDouble() * 2 - 1;
+
+            if (XDirection > 0)
+                XDirection = -XDirection;
+            SetDirection(XDirection, YDirection);
+        }
+
+        public void RandomToTheRight()
+        {
+            Random r = new Random();
+
+            double XDirection = r.NextDouble() * 2 - 1;
+            double YDirection = r.NextDouble() * 2 - 1;
+
+            if (XDirection < 0)
+                XDirection = -XDirection;
+            SetDirection(XDirection, YDirection);
+        }
     }
 }

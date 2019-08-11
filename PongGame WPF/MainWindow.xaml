@@ -22,11 +22,11 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
+            <Label Grid.Column="0" Content="Bot" HorizontalAlignment="Center"/>
             <Canvas Grid.Column="1" Name="BotSlideBar" Background="White"/>
             <Canvas Grid.Column="2" Name="PlayingField"/>
             <Canvas Grid.Column="3" Name="PlayerSlideBar" Background="White"/>
-
-
+            <Label Grid.Column="4" Content="Player" HorizontalAlignment="Center"/>
 
         </Grid>
 

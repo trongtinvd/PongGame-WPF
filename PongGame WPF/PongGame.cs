@@ -11,19 +11,35 @@ namespace PongGame_WPF
         public GameSlide Player { get; set; }
         public GameSlide Bot { get; set; }
         public GameBall Ball { get; set; }
+        public int PlayerScore { get; set; }
+        public int BotScore { get; set; }
         private bool gameStart;
 
         public PongGame()
         {
-            NewGame();
+            Player = new GameSlide();
+            Bot = new GameSlide();
+            Ball = new GameBall();
+            gameStart = false;
+            ResetGame();
         }
 
-        public void Start()
+        public void ResetGame()
+        {
+            Player.ToMiddle();
+            Ball.ToMiddle();
+            Bot.ToMiddle();
+            Ball.SetRandomDirection();
+            PlayerScore = 0;
+            BotScore = 0;
+        }
+
+        public void GameStart()
         {
             gameStart = true;
         }
 
-        public void End()
+        public void GameEnd()
         {
             gameStart = false;
         }
@@ -33,12 +49,18 @@ namespace PongGame_WPF
             return gameStart;
         }
 
-        public void NewGame()
+        public bool BallHitPlayer()
         {
-            Player = new GameSlide();
-            Bot = new GameSlide();
-            Ball = new GameBall();
-            gameStart = false;
+            if (Ball.Top() >= Player.Top() && Ball.Bottom() <= Player.Bottom() && Ball.position.AtXMax())
+                return true;
+            return false;
+        }
+
+        public bool BallHitBot()
+        {
+            if (Ball.Top() >= Bot.Top() && Ball.Bottom() <= Bot.Bottom() && Ball.position.AtXMin())
+                return true;
+            return false;
         }
     }
 }

@@ -98,6 +98,16 @@ namespace PongGame_WPF
             return (Y == RestrictY.Min);
         }
 
+        internal bool AtYEdge()
+        {
+            return (AtYMax() || AtYMin());
+        }
+
+        internal bool AtXEdge()
+        {
+            return (AtXMax() || AtXMin());
+        }
+
         internal bool AtYMax()
         {
             return (Y == RestrictY.Max);
@@ -107,5 +117,7 @@ namespace PongGame_WPF
         {
             return (AtXMin() || AtXMax() || AtYMin() || AtYMax());
         }
+
+
     }
 }
